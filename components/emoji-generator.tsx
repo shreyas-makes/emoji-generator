@@ -60,7 +60,7 @@ export default function EmojiGenerator() {
               Generating...
             </>
           ) : (
-            'Generate Emojis'
+            'Generate Emoji'
           )}
         </Button>
       </form>
