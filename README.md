@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emoji Generator
+
+This project is a Next.js application that generates emojis from text input using models from Replicate.
+
+## Project Overview
+
+The Emoji Generator allows users to input text prompts and generate corresponding emojis using the Replicate API. It features a user-friendly interface with a form for prompt submission, a loading animation during emoji generation, and a grid display of the generated emojis.
+
+## Key Features
+
+- Text-to-emoji generation using Replicate's API
+- User-friendly form for prompt submission
+- Loading animation during emoji generation
+- Grid display of generated emojis
+- Hover options to like or download emojis
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add your Replicate API token:
+   ```
+   REPLICATE_API_TOKEN=your_api_token_here
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js: Frontend framework
+- Shadcn: UI components
+- Lucide: Icons
+- Supabase: Database
+- Replicate: AI model for emoji generation
+- Clerk: Authentication
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/app`: Contains the main pages of the application
+- `/components`: Houses reusable React components
+- `/lib`: Utility functions and shared code
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project, check out the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Replicate API Documentation](https://replicate.com/docs)
+- [Shadcn UI Documentation](https://ui.shadcn.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Please feel free to submit a Pull Request.
