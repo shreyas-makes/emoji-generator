@@ -20,7 +20,7 @@ export async function POST(req: Request) {
           refine: "no_refiner",
           scheduler: "K_EULER",
           lora_scale: 0.6,
-          num_outputs: 1, // Changed from 4 to 1
+          num_outputs: 1,
           guidance_scale: 7.5,
           prompt_strength: 0.8,
           num_inference_steps: 50,
@@ -28,9 +28,9 @@ export async function POST(req: Request) {
       }
     )
 
-    // Since we're now generating only one image, we need to wrap it in an array
-    // to maintain compatibility with the existing frontend code
-    return NextResponse.json({ emojis: [output] })
+    console.log('Replicate API output:', output)
+
+    return NextResponse.json({ emojis: output })
   } catch (error) {
     console.error('Error generating emoji:', error)
     return NextResponse.json({ error: 'Failed to generate emoji' }, { status: 500 })

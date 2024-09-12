@@ -8,7 +8,7 @@ import EmojiGrid from './emoji-grid'
 
 export default function EmojiGenerator() {
   const [prompt, setPrompt] = useState('')
-  const [emojis, setEmojis] = useState([])
+  const [allEmojis, setAllEmojis] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -27,11 +27,16 @@ export default function EmojiGenerator() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to generate emojis')
+        throw new Error('Failed to generate emoji')
       }
 
       const data = await response.json()
-      setEmojis(Array.isArray(data.emojis) ? data.emojis : [])
+      console.log('API response:', data) // Keep this for debugging
+      if (Array.isArray(data.emojis) && data.emojis.length > 0) {
+        setAllEmojis(prevEmojis => [...prevEmojis, ...data.emojis])
+      } else {
+        throw new Error('No emoji generated')
+      }
     } catch (err) {
       setError(err.message)
     } finally {
@@ -69,8 +74,8 @@ export default function EmojiGenerator() {
           <span className="block sm:inline">{error}</span>
         </div>
       )}
-      {emojis.length > 0 && <EmojiGrid emojis={emojis} />}
-      {!isLoading && emojis.length === 0 && (
+      <EmojiGrid emojis={allEmojis} /> 
+      {!isLoading && allEmojis.length === 0 && (
         <div className="text-center text-gray-500 italic">
           No emojis generated yet. Enter a prompt and click generate!
         </div>

@@ -1,49 +1,31 @@
 'use client'
 
-import { useState } from 'react'
 import { Heart, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 interface EmojiGridProps {
   emojis: string[]
 }
 
 export default function EmojiGrid({ emojis }: EmojiGridProps) {
-  const [likedEmojis, setLikedEmojis] = useState<Set<number>>(new Set())
-
-  const handleLike = (index: number) => {
-    setLikedEmojis((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(index)) {
-        newSet.delete(index)
-      } else {
-        newSet.add(index)
-      }
-      return newSet
-    })
-  }
-
-  const handleDownload = (url: string) => {
-    // Implement download logic here
-    console.log('Downloading:', url)
-  }
-
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {emojis.map((emoji, index) => (
-        <div key={index} className="relative group">
-          <img src={emoji} alt={`Generated emoji ${index + 1}`} className="w-full h-auto rounded-lg" />
+        <div key={index} className="relative group aspect-square">
+          <Image
+            src={emoji}
+            alt={`Generated emoji ${index + 1}`}
+            fill
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            className="rounded-lg object-cover"
+          />
           <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => handleLike(index)}
-              className={likedEmojis.has(index) ? 'text-red-500' : 'text-white'}
-            >
-              <Heart />
+            <Button size="sm" variant="ghost">
+              <Heart className="w-4 h-4" />
             </Button>
-            <Button size="icon" variant="ghost" onClick={() => handleDownload(emoji)}>
-              <Download />
+            <Button size="sm" variant="ghost">
+              <Download className="w-4 h-4" />
             </Button>
           </div>
         </div>
