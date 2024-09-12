@@ -8,9 +8,9 @@ import EmojiGrid from './emoji-grid'
 
 export default function EmojiGenerator() {
   const [prompt, setPrompt] = useState('')
-  const [allEmojis, setAllEmojis] = useState([])
+  const [allEmojis, setAllEmojis] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,7 +38,7 @@ export default function EmojiGenerator() {
         throw new Error('No emoji generated')
       }
     } catch (err) {
-      setError(err.message)
+      setError(err instanceof Error ? err.message : 'An unknown error occurred')
     } finally {
       setIsLoading(false)
     }
